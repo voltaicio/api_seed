@@ -14,7 +14,7 @@ class BaseAPITestCase(APITestCase):
     """
     """
 
-    email = "admin@test.com"
+    username = "admin@test.com"
     password = "adm1n"
     token = None
 
@@ -24,7 +24,7 @@ class BaseAPITestCase(APITestCase):
         """
 
         cls.user, created = User.objects.get_or_create(
-            email=cls.email,
+            username=cls.username,
             defaults={
                 "is_active": True,
                 "is_staff": True,
@@ -32,13 +32,15 @@ class BaseAPITestCase(APITestCase):
                 "password": make_password(cls.password)
             })
 
+        super(BaseAPITestCase, cls).setUpClass()
+
     def authenticate(self):
         """
         """
 
         if self.token is None:
-            response = self.client.post(reverse("jwt_token"), {
-                "email": self.email,
+            response = self.client.post(reverse("api_token_auth"), {
+                "username": self.username,
                 "password": self.password
             })
             BaseAPITestCase.token = json.loads(
