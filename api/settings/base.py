@@ -13,6 +13,19 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+from django.core.exceptions import ImproperlyConfigured
+
+
+def get_env_variable(var_name):
+    """
+    Gets the environment variable or raises an exception.
+    """
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        raise ImproperlyConfigured(
+            "Set the {0} environment variable.".format(var_name))
+
 BASE_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
