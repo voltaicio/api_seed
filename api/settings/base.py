@@ -34,7 +34,7 @@ BASE_DIR = os.path.dirname(
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ["API_SEED_SECRET_KEY"]
+SECRET_KEY = get_env_variable("API_SEED_SECRET_KEY")
 
 ALLOWED_HOSTS = []
 
@@ -43,9 +43,9 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ["API_SEED_DB_NAME"],
-        'USER': os.environ["API_SEED_DB_USER"],
-        'PASSWORD': os.environ["API_SEED_DB_PASSWORD"],
+        'NAME': get_env_variable("API_SEED_DB_NAME"),
+        'USER': get_env_variable("API_SEED_DB_USER"),
+        'PASSWORD': get_env_variable("API_SEED_DB_PASSWORD"),
         'HOST': "",
         'PORT': "5432",
     }

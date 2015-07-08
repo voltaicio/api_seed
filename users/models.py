@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -35,7 +35,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
+class User(PermissionsMixin, AbstractBaseUser):
     """
     A model for app users.
 
@@ -55,9 +55,6 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(
         _("is staff"),
         default=False)
-    is_superuser = models.BooleanField(
-        _("is superuser"),
-        default=False)
 
     objects = UserManager()
 
@@ -65,4 +62,11 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = "email"
 
     def __str__(self):
+        return self.email
+
+    def get_short_name(self):
+        """
+        Must be implement in order to use the built in admin app.
+        """
+
         return self.email
