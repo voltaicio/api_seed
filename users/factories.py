@@ -7,7 +7,7 @@ User = get_user_model()
 
 
 class UserFactory(factory.DjangoModelFactory):
-    email = factory.Sequence(lambda n: "factory-email-{0}@test.com".format(n))
+    email = factory.Sequence(lambda n: "email-{0}@test.com".format(n))
     is_active = fuzzy.FuzzyChoice([True, False])
     is_staff = fuzzy.FuzzyChoice([True, False])
     is_superuser = fuzzy.FuzzyChoice([True, False])

@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from utils.models import AbstractCreatedModified
+from utils.models import Creatable, Modifiable
 
 
-class Thing(AbstractCreatedModified):
+class Thing(Creatable, Modifiable):
     """
     """
 

@@ -39,7 +39,7 @@ class BaseAPITestCase(APITestCase):
         """
 
         if self.token is None:
-            response = self.client.post(reverse("api_token_auth"), {
+            response = self.client.post(reverse("auth_token"), {
                 "email": self.email,
                 "password": self.password
             })

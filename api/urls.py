@@ -4,7 +4,7 @@ from django.contrib import admin
 urlpatterns = [
     url(
         r"^v1/api-token-auth", "rest_framework_jwt.views.obtain_jwt_token",
-        name="api_token_auth"),
+        name="auth_token"),
     url(r"^v1/", include("core.urls", namespace="core")),
     url(r"^v1/", include("users.urls", namespace="users")),
     url(r"^grappelli/", include("grappelli.urls")),
