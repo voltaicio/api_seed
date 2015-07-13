@@ -3,7 +3,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(
-        r"^v1/api-token-auth", "rest_framework_jwt.views.obtain_jwt_token",
+        r"^v1/auth-token", "rest_framework_jwt.views.obtain_jwt_token",
         name="auth_token"),
     url(r"^v1/", include("core.urls", namespace="core")),
     url(r"^v1/", include("users.urls", namespace="users")),

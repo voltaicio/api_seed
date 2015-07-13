@@ -5,6 +5,25 @@ from .factories import UserFactory
 from utils.testing import BaseAPITestCase
 
 
+class UserCurrentTest(BaseAPITestCase):
+    """
+    Tests the 'users:current' endpoint.
+    """
+
+    def test_get_unauthenticated(self):
+        """401"""
+
+        response = self.client.get(reverse("users:current"))
+        self.assertEqual(response.status_code, 401)
+
+    def test_get_ok(self):
+        """200"""
+
+        self.authenticate()
+        response = self.client.get(reverse("users:current"))
+        self.assertEqual(response.status_code, 200)
+
+
 class UserDetailTest(BaseAPITestCase):
     """
     Tests the 'users:detail' endpoint.

@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import UserDetail, UserList
+from .views import UserCurrent, UserDetail, UserList
 
 urlpatterns = [
     url(
@@ -10,5 +10,9 @@ urlpatterns = [
     url(
         regex=r"^users/(?P<pk>\d+)$",
         view=UserDetail.as_view(),
-        name="detail")
+        name="detail"),
+    url(
+        regex=r"^users/current$",
+        view=UserCurrent.as_view(),
+        name="current"),
 ]
